@@ -1,0 +1,48 @@
+
+/* Search Section
+--------------------------------*/
+
+#search .title  {
+  font-size: 20px;
+  
+}
+
+#search #button  {
+  font-size: 20px;
+}
+
+#search .searchButton {
+    margin-left: 20px;
+}
+
+#search .container {
+	position: relative;
+	margin: auto;
+}
+
+#editButton{
+	margin : 3px;
+	font-size: 15px;
+}
+
+#submitButton{
+	margin : 3px;
+	font-size: 15px;
+}
+
+#search{
+	background : #F6F6F6;
+}
+
+
+/* ==========================
+     userInformation Section
+    ============================ */
+    
+.marginbox {
+	margin : 15px;
+}   
+    
+    
+    
+

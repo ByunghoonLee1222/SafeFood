@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Reveal Bootstrap Template</title>
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta content="" name="keywords">
+<meta content="" name="description">
+
+<!-- Favicons -->
+<link href="img/favicon.png" rel="icon">
+<link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+<!-- Google Fonts -->
+<link
+	href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800|Montserrat:300,400,700"
+	rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css?family=Noto+Serif+KR&display=swap"
+	rel="stylesheet">
+
+<!-- Bootstrap CSS File -->
+<link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Libraries CSS Files -->
+<link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="lib/animate/animate.min.css" rel="stylesheet">
+<link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+<link href="lib/owlcarousel/assets/owl.carousel.min.css"
+	rel="stylesheet">
+<link href="lib/magnific-popup/magnific-popup.css" rel="stylesheet">
+<link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+
+<!-- Main Stylesheet File -->
+<link href="css/style.css" rel="stylesheet">
+<link href="css/taemin.css" rel="stylesheet">
+<!-- =======================================================
+    Theme Name: Reveal
+    Theme URL: https://bootstrapmade.com/reveal-bootstrap-corporate-template/
+    Author: BootstrapMade.com
+    License: https://bootstrapmade.com/license/
+  ======================================================= -->
+</head>
+
+<body id="body">
+
+	<!--==========================
+    Top Bar
+  ============================-->
+	<section id="topbar" class="d-none d-lg-block">
+		<div class="container clearfix">
+			<div class="contact-info float-left">
+				
+			</div>
+			<div class="social-links float-right">
+				<a href="#" id="logout" onclick="logout();">로그아웃</a> <a href="#"
+					id="userinfo" onclick="userinfo();">회원정보</a>
+			</div>
+		</div>
+	</section>
+
+	<!--==========================
+    Header
+  ============================-->
+	<header id="header">
+		<div class="container">
+			<div id="logo" class="pull-left">
+				 <a href="#" onclick="home();"><img src="https://lab.ssafy.com/uploads/-/system/appearance/header_logo/1/ssafy_logo.png"  alt="" title="" /></a>
+			</div>
+
+			<nav id="nav-menu-container">
+				<ul class="nav-menu">
+					<li><a href="#about">공지 사항</a></li>
+					<li><a href="#services" onclick="productinfo();">상품 정보</a></li>
+					<li><a href="#portfolio">베스트 섭취 정보</a></li>
+					<li><a href="#team">내 섭취 정보</a></li>
+					<li><a href="#contact">예상 섭취 정보</a></li>
+				</ul>
+			</nav>
+			<!-- #nav-menu-container -->
+		</div>
+	</header>
+	<!-- #header -->
+
+
+	<!-- #intro -->
+
+	<main id="main"> <!--==========================
+     userInformation Section
+    ============================-->
+	<section id="userInformation">
+		<div class="container">
+			<div class="section-header">
+				</br> </br>
+				<h2>내 정보 보기</h2>
+			</div>
+
+			<form>
+
+				<div class="row marginbox">
+					<h4 class="col-lg-4" align="center">아이디</h4>
+					<h5 class="col-lg-8" align="center">아이디 이름</h5>
+				</div>
+				<hr>
+				<div class="row marginbox">
+					<h4 class="col-lg-4" align="center">비밀번호</h4>
+					<input type="password" class="form-control col-lg-8" id="password"
+						placeholder="Password">
+				</div>
+				<hr>
+				<div class="row marginbox">
+					<h4 class="col-lg-4" align="center">이름</h4>
+					<input type="text" class="form-control col-lg-8" id="name"
+						placeholder="Name">
+				</div>
+				<hr>
+				<div class="row marginbox">
+					<h4 class="col-lg-4" align="center">주소</h4>
+					<input type="text" class="form-control col-lg-8" id="address"
+						placeholder="Address">
+				</div>
+				<hr>
+				<div class="row marginbox">
+					<h4 class="col-lg-4" align="center">전화번호</h4>
+					<input type="text" class="form-control col-lg-8" id="phoneNumber"
+						placeholder="phoneNumber">
+				</div>
+				<hr>
+				<div class="row marginbox">
+					<h4 class="col-lg-4" align="center">알레르기</h4>
+					<fieldset class="col-lg-8" id="innerFiledSet">
+						<input class="from-control marginbox" type="checkbox" name="al1">
+						대두 <input class="from-control marginbox" type="checkbox"
+							name="al2"> 땅콩 <input class="from-control marginbox"
+							type="checkbox" name="al3"> 우유 <input
+							class="from-control marginbox" type="checkbox" name="al4">
+						새우 <input class="from-control marginbox" type="checkbox"
+							name="al5"> 참치 <input class="from-control marginbox"
+							type="checkbox" name="al6"> 연어 <input
+							class="from-control marginbox" type="checkbox" name="al7">
+						쑥 <input class="from-control marginbox" type="checkbox" name="al8">
+						소고기 <input class="from-control marginbox" type="checkbox"
+							name="al9"> 닭고기 <input class="from-control marginbox"
+							type="checkbox" name="al10"> 돼지고기 <input
+							class="from-control marginbox" type="checkbox" name="al11">
+						복숭아 <input class="from-control marginbox" type="checkbox"
+							name="al12"> 민들레 <input class="from-control marginbox"
+							type="checkbox" name="al13"> 계란
+					</fieldset>
+				</div>
+				<hr>
+				<div class="row marginbox">
+					<h4 class="col-lg-9"></h4>
+					<input type="submit" class="form-control col-lg-1 btn btn-default"
+						id="submitButton" value="탈퇴"> <input type="submit"
+						class="form-control col-lg-1 btn btn-primary" id="editButton"
+						value="수정">
+				</div>
+
+			</form>
+
+		</div>
+
+	</section>
+
+
+	<!-- #services --> </main>
+
+	<!--==========================
+    Footer
+  ============================-->
+	<footer id="footer">
+		<div class="container">
+			<div class="copyright">
+				&copy; Copyright <strong>Reveal</strong>. All Rights Reserved
+			</div>
+			<div class="credits">
+				<!--
+          All the links in the footer should remain intact.
+          You can delete the links only if you purchased the pro version.
+          Licensing information: https://bootstrapmade.com/license/
+          Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Reveal
+        -->
+				Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+			</div>
+		</div>
+	</footer>
+	<!-- #footer -->
+
+	<a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+	<!-- JavaScript Libraries -->
+	<script src="lib/jquery/jquery.min.js"></script>
+	<script src="lib/jquery/jquery-migrate.min.js"></script>
+	<script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="lib/easing/easing.min.js"></script>
+	<script src="lib/superfish/hoverIntent.js"></script>
+	<script src="lib/superfish/superfish.min.js"></script>
+	<script src="lib/wow/wow.min.js"></script>
+	<script src="lib/owlcarousel/owl.carousel.min.js"></script>
+	<script src="lib/magnific-popup/magnific-popup.min.js"></script>
+	<script src="lib/sticky/sticky.js"></script>
+
+	<!-- Contact Form JavaScript File -->
+	<script src="contactform/contactform.js"></script>
+
+	<!-- Template Main Javascript File -->
+	<script src="js/main.js"></script>
+
+	<script type="text/javascript">
+		function logout() {
+
+			window.location.href = "login.html";
+
+		}
+		function userinfo() {
+
+			window.location.href = "userInformation.html";
+
+		}
+
+		function productinfo() {
+
+			window.location.href = "itemList.html";
+
+		}
+		function home() {
+			window.location.href = "logout.html";
+		}
+	</script>
+</body>
+</html>
