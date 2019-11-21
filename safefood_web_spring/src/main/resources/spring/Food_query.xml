@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+	
+<mapper namespace="com.ssafy.model.dao.FoodDAO">
+
+	 <insert id="insert"		parameterType="food">
+   		insert into food (code, name, maker, material, image, serving_wt, nutr_cont1, nutr_cont2, nutr_cont3, nutr_cont4, nutr_cont5, nutr_con6,nutr_cont7,nutr_cont8,nutr_cont9)
+   		values ( #{code:INTEGER}
+   				,#{name:VARCHAR}
+   		        ,#{maker:VARCHAR}
+   		        ,#{material:VARCHAR}
+   		        ,#{image:VARCHAR}
+   		        ,#{serving_wt:VARCHAR}
+   		        ,#{nutr_cont1:VARCHAR}
+   		        ,#{nutr_cont2:VARCHAR}
+   		        ,#{nutr_cont3:VARCHAR}
+   		        ,#{nutr_cont4:VARCHAR}
+   		        ,#{nutr_cont5:VARCHAR}
+   		        ,#{nutr_cont6:VARCHAR}
+   		        ,#{nutr_cont7:VARCHAR}
+   		        ,#{nutr_cont8:VARCHAR}
+   		        ,#{nutr_cont9:VARCHAR})
+   </insert>
+   <delete id="delete" 		parameterType="string">
+   		delete from member where code=#{code}
+   </delete>
+   <update id="update"		parameterType="food">
+   		update food set name=#{name:VARCHAR}
+   		        	  , maker=#{maker:VARCHAR}
+   		        	  , material=#{material:VARCHAR}
+   		        ,image=#{image:VARCHAR}
+   		        ,serving=#{serving_wt:VARCHAR}
+   		        ,nutr_cont1=#{nutr_cont1:VARCHAR}
+   		        ,nutr_cont2=#{nutr_cont2:VARCHAR}
+   		        ,nutr_cont3=#{nutr_cont3:VARCHAR}
+   		        ,nutr_cont4=#{nutr_cont4:VARCHAR}
+   		        ,nutr_cont5=#{nutr_cont5:VARCHAR}
+   		        ,nutr_cont6=#{nutr_cont6:VARCHAR}
+   		        ,nutr_cont7=#{nutr_cont7:VARCHAR}
+   		        ,nutr_cont8=#{nutr_cont8:VARCHAR}
+   		        ,nutr_cont9=#{nutr_cont9:VARCHAR}
+   		where  code=#{code:INTEGER}
+   </update>
+   
+   <select id="searchByName"		 parameterType="string"    resultType="food">
+   		select * from food  where name like concat('%',#{name},'%')
+   </select>
+   <select id="searchByMaterial"		 parameterType="string"    resultType="food">
+   		select * from food  where material like concat('%',#{material},'%')
+   </select>
+   <select id="searchByCode"		 parameterType="string"    resultType="food">
+   		select * from food  where code like concat('%',#{code},'%')
+   </select>
+   
+   <select id="searchAll"	parameterType="pagebean"	resultType="food">
+   		select * from food 
+   		<!-- 동적 쿼리시 조건에 의해 where 나 and를 붙여주는 태그  -->
+   		<where>
+   			<if test='key != null and key!="all"'>
+   				<if test=" word != null">
+   					<choose>
+   						<when test="key=='name'">
+	  						name like concat('%',#{word},'%')
+	  					</when>
+	  					<when test="key=='material'">
+	  						material like concat('%',#{word},'%')
+	  					</when>
+	  					<when test="key=='code'">
+	  						code like concat('%',#{word},'%')
+	  					</when>
+   					</choose>
+   				</if>
+   			</if>
+   		</where>
+   		order by code 
+   </select>
+   <select id="count"	resultType="int"	parameterType="pagebean">
+   		select count(*) as cnt from food
+   		<where>
+   			<if test=' key != null and key!="all" '>
+   				<if test=" word != null ">
+   					<choose>
+   						<when test=" key == 'code' ">
+   							code = #{word}
+   						</when>
+   					</choose>
+   				</if>
+   			</if>
+   		</where>
+   </select>
+</mapper>
+
+
+
+
+
+

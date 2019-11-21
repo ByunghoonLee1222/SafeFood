@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+	<!-- controller를 위한 scan설정 -->
+	<context:component-scan base-package="com.ssafy.controller"/>
+
+	<!-- web을 위한 다양한 annotation이 처리될 수 있도록 -->
+    <mvc:annotation-driven />
+	
+	<!-- viewResolver를 설정하지 않으면 기본적으로 DefaultUrlBasedViewResolver가 동작된다. => url에 해당하는 View를 찾아 서비스
+		 InternalResourceViewResolver는 DefaultUrlBasedViewResolver를 상속 받음
+		 - url에 해당하는 View를 찾아 서비스
+		 - 서버 내부에 있는 어떤 ㅈ아ㅝㄴ도 찾아서 서비스 ( /WEB-INF/ 하위에 있는 자원도 서비스)
+		 - 전달된 url 앞에 prefix로 지정한 값을 추가
+		 - 전달된 url 뒤에 suffix로 지정한 값을 추가
+	
+	 -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	        <property name="prefix" value="/"/>
+	        <property name="suffix" value=".jsp"/>
+	</bean>
+
+</beans>

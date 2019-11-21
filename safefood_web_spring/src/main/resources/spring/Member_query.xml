@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+	
+<mapper namespace="com.ssafy.model.dao.MemberDAO">
+
+	 <insert id="add"		parameterType="member">
+   		insert into member (id, password, name, email, phone, address, material)
+   		values ( #{id:VARCHAR}
+   		        ,#{password:VARCHAR}
+   		        ,#{name:VARCHAR}
+   		        ,#{email:VARCHAR}
+   		        ,#{phone:VARCHAR}
+   		        ,#{address:VARCHAR}
+   		        ,#{material:VARCHAR})
+   </insert>
+   <delete id="remove" 		parameterType="string">
+   		delete from member where id=#{id}
+   </delete>
+   <update id="update"		parameterType="member">
+   		update member set password=#{password:VARCHAR}
+   		                , name = #{name:VARCHAR}
+   		                , email= #{email:VARCHAR}
+   		                , phone = #{phone:VARCHAR}
+   		                , address=#{address:VARCHAR}
+   		                , material = #{material:VARCHAR}
+   		where  id = #{id:VARCHAR}
+   </update>
+   
+   <select id="search"		 parameterType="string"    resultType="member">
+   		select * from member  where id=#{id}
+   </select>
+   
+   <select id="searchAll"		 parameterType="pagebean"    resultType="member">
+   		select * from member
+   </select>
+</mapper>
+
+
+
+
+
+

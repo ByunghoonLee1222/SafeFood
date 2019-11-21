@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="safefood_web_front_서울_06반_이병훈_김태민">
-        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="java-output-path" value="/safefood_web_front_서울_06반_이병훈_김태민/build/classes"/>
-        <property name="context-root" value="safefood_web_front_서울_06반_이병훈_김태민"/>
-    </wb-module>
-</project-modules>

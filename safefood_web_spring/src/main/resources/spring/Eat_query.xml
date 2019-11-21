@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+	
+<mapper namespace="com.ssafy.model.dao.EatDAO">
+
+	<insert id="insert"		parameterType="eat">
+   		insert into eat (id, code, order_date, amount)
+   		values ( #{id:VARCHAR}
+   				,#{code:INTEGER}
+   		        ,now()
+   		        ,#{amount:INTEGER})
+   </insert>
+   <delete id="delete" 		parameterType="int">
+   		delete from eat where no=#{no}
+   </delete>
+   
+   <!--  노 필요 기능
+   <update id="update"		parameterType="eat">
+   		update eat set #{id:VARCHAR}
+   				,#{code:INTEGER}
+   		        ,now()
+   		        ,#{amount:INTEGER}}
+   		where  no=#{no:INTEGER}
+   </update>
+   -->
+   
+   <select id="searchById"		 parameterType="string"    resultType="eat">
+   		select * from eat  where id like concat('%',#{id},'%')
+   </select>
+   <select id="searchByMaterial"		 parameterType="string"    resultType="eat">
+   		select * from food  where material like concat('%',#{material},'%')
+   </select>
+   <select id="searchByCode"		 parameterType="string"    resultType="eat">
+   		select * from food  where code like concat('%',#{code},'%')
+   </select>
+   
+   <select id="searchAll"	parameterType="pagebean"	resultType="eat">
+   		select * from eat 
+   		<!-- 동적 쿼리시 조건에 의해 where 나 and를 붙여주는 태그  -->
+   		<where>
+   			<if test='key != null and key!="all"'>
+   				<if test=" word != null">
+   					<choose>
+   						<when test="key=='id'">
+	  						id like concat('%',#{word},'%')
+	  					</when>
+	  					<when test="key=='code'">
+	  						code like concat('%',#{word},'%')
+	  					</when>
+   					</choose>
+   				</if>
+   			</if>
+   		</where>
+   		order by order_date 
+   </select>
+   
+   <select id="count"	resultType="int"	parameterType="pagebean">
+   		select count(*) as cnt from eat
+   		<where>
+   			<if test=' key != null and key!="all" '>
+   				<if test=" word != null ">
+   					<choose>
+   						<when test=" key == 'id' ">
+   							id = #{word}
+   						</when>
+   					</choose>
+   				</if>
+   			</if>
+   		</where>
+   </select>
+</mapper>
+
+
+
+
+
+

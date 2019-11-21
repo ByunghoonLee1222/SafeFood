@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+    <head>
+     	<title>메인 페이지</title>
+        <meta charset="UTF-8">
+        <!-- 합쳐지고 최소화된 최신 CSS -->
+        <script src="./js/jquery-3.3.1.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+        <!-- 부가적인 테마 -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+        <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+        
+        <link rel="stylesheet" href="./css/food.css">
+        <link rel="stylesheet" href="./css/main.css">
+        <link rel="stylesheet" href="./font/cssFont/all.css">
+		
+       	<script type="text/javascript">
+	       	$(function(){
+	       		$.ajax({
+	    			type : 'GET',
+	    			url : 'xml/foodInfo.xml',
+	    			dataType : 'xml', 
+	    			success : function(data){
+	    				$(data).find('food').each(function(item){
+	    					var html = '<article><span><img src="img/' + $(this).find('name').text() + '.jpg" class="listimg"></img></span>';
+	    					html+="<div class='content'><h3><a class = 'goDetailInfo' href ='detailInfo.html?"+ $(this).find('code').text() +"'>"+$(this).find('name').text() +"</a></h3>"
+	    					html+= '<a class="a"><i class="far fa-calendar-alt"> Feb.2017</i></a> &nbsp; <a href="detailInfo.html?'+$(this).find('code').text()+'" class="a">  <i class="fas fa-external-link-alt">  View detail</i></a><hr><p>'
+	    					html+= $(this).find('material').text();
+	    					html+='<p class="b"><a href="#" class="btn-info"><i class="fas fa-plus-square"> 추가</i></a> <a href="#" class="btn-info"><i class="fas fa-shopping-bag"> 찜</i></a></p></div></article>';
+	    					$('.features2').append(html);
+	    				});
+	    			},
+	    			error : function(err){
+	    				console.log(err);
+	    			}
+	    		});
+			});
+	       	$(function(){
+	        	$('#search').click(function () {
+		            console.log($('#sel1').val());
+		            console.log($('#keyword').val());
+		            $('.features2 *').remove();
+		            $.ajax({
+		    			type : 'GET',
+		    			url : 'xml/foodInfo.xml',
+		    			dataType : 'xml', 
+		    			success : function(data){
+		    				$(data).find('food').each(function(item){
+		            			
+		    					console.log($(this).find('name').text());
+		    					
+		    					if($('#sel1').val()=="foodname"&&$(this).find('name').text().includes($('#keyword').val())){
+		    						var html = '<article><span><img src="img/' + $(this).find('name').text() + '.jpg" class="listimg"></img></span>';
+			    					html+="<div class='content'><h3><a class = 'goDetailInfo' href ='detailInfo.html?"+ $(this).find('code').text() +"'>"+$(this).find('name').text() +"</a></h3>"
+			    					html+= '<a class="a"><i class="far fa-calendar-alt"> Feb.2017</i></a> &nbsp; <a href="detailInfo.html?'+$(this).find('code').text()+'" class="a">  <i class="fas fa-external-link-alt">  View detail</i></a><hr><p>'
+			    					html+= $(this).find('material').text();
+			    					html+='<p class="b"><a href="#" class="btn-info"><i class="fas fa-plus-square"> 추가</i></a> <a href="#" class="btn-info"><i class="fas fa-shopping-bag"> 찜</i></a></p></div></article>';
+			    					$('.features2').append(html);
+		    					}else if($('#sel1').val()=="inner"&&$(this).find('material').text().includes($('#keyword').val())){
+		    						var html = '<article><span><img src="img/' + $(this).find('name').text() + '.jpg" class="listimg"></img></span>';
+			    					html+="<div class='content'><h3><a class = 'goDetailInfo' href ='detailInfo.html?"+ $(this).find('code').text() +"'>"+$(this).find('name').text() +"</a></h3>"
+			    					html+= '<a class="a"><i class="far fa-calendar-alt"> Feb.2017</i></a> &nbsp; <a href="detailInfo.html?'+$(this).find('code').text()+'" class="a">  <i class="fas fa-external-link-alt">  View detail</i></a><hr><p>'
+			    					html+= $(this).find('material').text();
+			    					html+='<p class="b"><a href="#" class="btn-info"><i class="fas fa-plus-square"> 추가</i></a> <a href="#" class="btn-info"><i class="fas fa-shopping-bag"> 찜</i></a></p></div></article>';
+			    					$('.features2').append(html);
+		    					}
+		    				});
+		    			},
+		    			error : function(err){
+		    				console.log(err);
+		    			}
+		    		});
+	        	}) 
+	        	var isLogin = false;
+	                var user = getCookie("username");
+	                if (user != "") {
+	                    $('#sign').text(user + " 회원 정보");
+	                    $('#login').text("로그아웃");
+	                    $('#sign').attr("href", "myInfo.html");
+	                    $('#login').attr("data-target", "#");
+	                    isLogin = true;
+	                } else {
+	                    $('#sign').attr("href", "signup.html");
+	                    $('#login').attr("data-target", "#modalLoginForm");
+	
+	                }
+	                $('#login').click(function () {
+	                    if (isLogin) {
+	                        document.cookie = 'username=;expires=Wed; 01 Jan 1970;path=/';
+	                        alert('로그아웃 됐습니다.');
+	                    }
+	                })
+	                $('#putlogin').click(function () {
+	                    var user = $('#defaultForm-email').val()
+	                    if (user != "" && user != null) {
+	                        setCookie("username", user, 30);
+	                    }
+	                    alert('로그인 됐습니다.');
+	                    location.reload();
+	                })
+	            });
+	       	
+	            function setCookie(cname, cvalue, exdays) {
+	                var d = new Date();
+	                d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+	                var expires = "expires=" + d.toGMTString();
+	                document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+	            }
+	            function getCookie(cname) {
+	                var name = cname + "=";
+	                var decodedCookie = decodeURIComponent(document.cookie);
+	                var ca = decodedCookie.split(';');
+	                for (var i = 0; i < ca.length; i++) {
+	                    var c = ca[i];
+	                    while (c.charAt(0) == ' ') {
+	                        c = c.substring(1);
+	                    }
+	                    if (c.indexOf(name) == 0) {
+	                        return c.substring(name.length, c.length);
+	                    }
+	                }
+	                return "";
+	            }
+    		</script>
+    		</head>
+    		<body>
+        		<nav class="navbar navbar-default navbar-fixed-top">
+        
+            	<div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="Main.html">
+                    <img class="navbar-brand2" src="img/header-logo.jpg">
+                </a>
+            	</div>
+            	<div class="collapse navbar-collapse" id="myNavbar">
+	                <ul class="nav navbar-nav navbar-right">
+	                    <li><a href="#notice">공지 사항</a></li>
+	                    <li><a href="foodlist.html">상품 정보</a></li>
+	                    <li><a href="#bestfood">베스트 섭취 정보</a></li>
+	                    <li><a href="#myfood">내 섭취 정보</a></li>
+	                    <li><a href="#prediction">예상 섭취 정보</a></li>
+	                    <li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>
+	                    <li><a href="" id="sign"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+	                    <li><a href="" data-toggle="modal" data-target="#modalLoginForm" id="login"><span class="glyphicon glyphicon-log-in">
+	                                Login</span></a></li>
+	        
+	                </ul>
+                <div id='loginForm' style="display: none">
+                    <form method="post" action="">
+                        <table>
+                            <tr>
+                                <td>아 이 디</td>
+                                <td><input type='text' id='id' name='id' /></td>
+                            </tr>
+                            <tr>
+                                <td>비밀번호</td>
+                                <td><input type='password' id='password' name='password' /></td>
+                            </tr>
+                            <tr>
+                                <td colspan='2'>
+                                    <input type="submit" value='로그인' />
+                                    <input type="button" id='hideBt' value='닫기' />
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+    		<!-- 로그인 모달창 -->
+            <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header text-center">
+                            <h4 class="modal-title w-100 font-weight-bold">로그인</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body mx-3">
+                            <div class="md-form mb-5">
+                                <i class="fas fa-envelope prefix grey-text"></i>
+                                <input type="email" id="defaultForm-email" class="form-control validate">
+                                <label data-error="wrong" data-success="right" for="defaultForm-email">Your email</label>
+                            </div>
+        
+                            <div class="md-form mb-4">
+                                <i class="fas fa-lock prefix grey-text"></i>
+                                <input type="password" id="defaultForm-pass" class="form-control validate">
+                                <label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label>
+                            </div>
+        
+                        </div>
+                        <div class="modal-footer d-flex justify-content-center">
+                            <button class="btn btn-default" id="putlogin">Login</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Container (중간 섹션) -->
+        <div class="bg-1">
+            <div>
+                <br /><br /><br /><br /><br /><br />
+            </div>
+            <div id="band" class="container conta text-center">
+                <h1><em>WHAT WE PROVIDE</em></h1>
+                <P>건강한 삶을 위한 먹거리 프로젝트</P>
+                <br>
+                <div class="row bg-2 text-center">
+                        <div class="form-group col-md-3">
+                            <label for="sel1">검색 조건</label>
+                            <select class="form-control" id="sel1">
+                                <option value="foodname">상품명</option>
+                                <option value="inner">성분</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="keyword">검색 단어</label>
+                            <input type="text" class="form-control" id="keyword">
+                        </div>
+                        <div class="form-group col-sm-1">
+                            <br/>
+                            <button type="submit" class="btn btn-info" id="search"><span class="glyphicon glyphicon-search"></span></button>
+                        </div>
+                </div>
+            </div>
+        </div>
+        <div class="container conta">
+            <section>
+                <div class="features2">
+                </div>
+            </section>
+        </div>
+        <footer class="text-center">
+            <div>
+                <p><span class="glyphicon glyphicon-map-marker"></span> (SSAFY) 서울시 강남구 태헤란로 멀티스퀘어</p>
+                <p><span class="glyphicon glyphicon-phone"></span> 1544-9001</p>
+                <p><span class="glyphicon glyphicon-envelope"></span> admin@ssafy.com</p>
+            </div>
+        </footer>
+    </body>
+</html>
